@@ -1,19 +1,3 @@
-const travelMethods = [
-  "car",
-  "car",
-  "truck",
-  "truck",
-  "bike",
-  "walk",
-  "car",
-  "van",
-  "bike",
-  "walk",
-  "car",
-  "van",
-  "car",
-  "truck",
-];
 
 
 
@@ -365,3 +349,102 @@ idx = comments.findIndex((comment) =>{
 // Check your work:
 console.log('Exercise 9 my result: ', idx)
 console.log('Exercise 9 correct result: ', 3)
+
+/*
+Level Up exercise 1: Array.prototype.reduce()
+
+Calculate the combined lifespan of all the inventors using 
+Array.prototype.reduce()
+
+- Each object in the array includes these properties: 
+  'first', 'last', 'year' (birth year), and 'passed' (year of death).
+- Use the Array.prototype.reduce() method to calculate the sum of the total 
+  years lived by all the inventors.
+- Store the total sum in the variable 'totalYearsLived'.
+
+Hints:
+
+- Inside the reduce callback function, calculate the lifespan of each inventor 
+  (passed - year).
+- Accumulate this lifespan in the 'totalYearsLived' variable.
+- Remember, reduce takes a callback function and an initial value for the 
+  accumulator.
+*/
+
+const inventors2 = [
+    { first: "Albert", last: "Einstein", year: 1879, passed: 1955 },
+    { first: "Isaac", last: "Newton", year: 1643, passed: 1727 },
+    { first: "Galileo", last: "Galilei", year: 1564, passed: 1642 },
+    { first: "Marie", last: "Curie", year: 1867, passed: 1934 },
+    { first: "Johannes", last: "Kepler", year: 1571, passed: 1630 },
+    { first: "Nicolaus", last: "Copernicus", year: 1473, passed: 1543 },
+    { first: "Max", last: "Planck", year: 1858, passed: 1947 },
+    { first: "Katherine", last: "Blodgett", year: 1898, passed: 1979 },
+    { first: "Ada", last: "Lovelace", year: 1815, passed: 1852 },
+    { first: "Sarah E.", last: "Goode", year: 1855, passed: 1905 },
+    { first: "Lise", last: "Meitner", year: 1878, passed: 1968 },
+    { first: "Hanna", last: "Hammarström", year: 1829, passed: 1909 },
+  ];
+  
+
+let totalYearsLived = 0;
+
+totalYearsLived = inventors.reduce((accumulator, currentValue)=>{
+    return currentValue.passed - currentValue.year + accumulator ; 
+}, 0);
+
+
+// // Check your work:
+console.log('Level Up 1 my result: ', totalYearsLived);
+console.log('Level Up 1 correct result: ', 861);
+
+
+/*
+Level Up exercise 2: Array.prototype.reduce()
+
+Tallying travel methods using Array.prototype.reduce(). 
+
+Count the number of times each travel method appears in the 'travelMethods'
+array.
+
+- The resulting object should have keys as the travel methods 
+  ('car', 'truck', 'bike', etc.) and values as their respective counts.
+- Store this object in the variable 'travelMethodCounts'.
+
+Hints:
+- Inside the reduce function, check if the travel method already exists as a key
+  in your accumulator object. If it does, increment its count. If not, add it 
+  to the object and give it a value of 1.
+- Since you want to return an object, be sure to pass an empty {} for the 
+  initial value of the "accumulator".
+*/
+
+const travelMethods = [
+    "car",
+    "car",
+    "truck",
+    "truck",
+    "bike",
+    "walk",
+    "car",
+    "van",
+    "bike",
+    "walk",
+    "car",
+    "van",
+    "car",
+    "truck",
+  ];
+  
+let travelMethodCounts = {}
+
+travelMethodCounts = travelMethods.reduce((accumulator, travelMethod)=>{
+    accumulator[travelMethod] = (accumulator[travelMethod] || 0) + 1;
+    return accumulator; 
+}, {});
+
+console.log('Level Up 2 my result: ', travelMethodCounts)
+console.log(
+  'Level Up 2 correct result: ', 
+  { car: 5, truck: 3, bike: 2, walk: 2, van: 2 }
+)
